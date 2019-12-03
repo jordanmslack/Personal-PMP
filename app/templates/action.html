@@ -1,0 +1,53 @@
+{% extends 'index.html' %}
+
+{% block body %}
+
+            <div class="flxsb">
+                <h1>{{ data.name }}</h1>
+                <a href="{{ url_for('task.edit_action', action_id=data.id) }}"><button>Edit</button></a>
+            </div>
+
+            <p class="crumb bb">
+                <a href="{{ url_for('task.home') }}">Home</a>
+                    <span> > </span>
+                <a href="{{ url_for('task.project', id=data.project_id) }}">{{ data.project.name }}</a>
+                    <span> > </span>
+                <a href="{{ url_for('task.user', user_id=data.user_id) }}">{{ data.user.name() }}</a>
+                    <span> > </span>
+                {{ data.name }}
+            </p>
+
+            <div class="plaincard col-1">
+
+                <div id="status" class="flxp" style="padding-top:20px">
+                        <div class="col-3"><strong>Time</strong><br>
+                            <p class="medium">{{ data.time }} Hours</p>
+                        </div>
+
+                        <div class="col-3"><strong>Priority</strong><br>
+                            <p class="medium">{{ data.priority }}</p>
+                        </div>
+
+                        <div class="col-3"><strong>Contextual Completion</strong><br>
+                            <p class="medium">{{ data.contextual_completion() }}</p>
+                        </div>
+                </div>
+
+                <p><strong>Description: </strong>{{ data.description }}</p>
+                <p>Status: {{ list }}</p>
+
+                <p>Desired Start Date: {{ data.start_date }}</p>
+                <p>Estimated Start Date: {{ data.estimated_start_date() }}</p>
+                <p>Actual Start Date: {{ data.start_date }}</p>
+
+                {% if closed %}
+                    <p>Closed: {{ data.closed }}</p>
+                    <p>Actual Completion: {{ data.actual_completion() }} Hours</p>
+                    <p>Completion Delta: {{ data.completion_delta() }}</p>
+                {% endif %}
+
+            </div>
+
+
+{% endblock body %}
+

@@ -1,0 +1,31 @@
+{% extends 'home.html' %}
+
+{% block mainpage %}
+
+        <div class="col-1 plaincard mt40">
+
+                <ul id="overall-progress">
+                    <li><span class="bar" style="width:{{ complete }}%">{{ complete }}%</span></li>
+                </ul>
+
+                <div id="status" class="flxp" style="padding-top:20px">
+                        <div class="col-4"><strong>Projects</strong><br>
+                            <p class="medium">{{ data }}</p>
+                        </div>
+
+                        <div class="col-4"><strong>Actions</strong><br>
+                            <p class="medium">{{ actions }}</p>
+                        </div>
+
+                        <div class="col-4"><strong>Groups</strong><br>
+                            <p class="medium">{{ groups }}</p>
+                        </div>
+
+                        <div class="col-4"><strong>Users</strong><br>
+                            <p class="medium">{{ users }}</p>
+                        </div>
+                </div>
+
+        </div>
+
+{% endblock mainpage %}

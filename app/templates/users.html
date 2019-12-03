@@ -1,0 +1,24 @@
+{% extends 'home.html' %}
+
+{% block create_button %}
+    <a href="{{ url_for('task.new_user') }}"><button>New User</button></a>
+{% endblock create_button %}
+
+{% block mainpage %}
+
+        <div class="col-1 padt40">
+
+            <div class="flxsb">
+                {% for row in users %}
+                    <div class="plaincard half" style="margin: 0px 0px 40px 0px;">
+                        <h1>{{ row.name() }}</h1>
+                        <a href="{{ url_for('task.user', user_id=row.id) }}"><button class="small">More</button></a>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+
+{% endblock mainpage %}
+
+

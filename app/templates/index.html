@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>
+        {% block title %}ProjectManagement[X]{% endblock %}
+    </title>
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,700" rel="stylesheet">
+
+    <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='css/styles0315.css') }}">
+
+</head>
+
+<body>
+
+    <section id="topbar">
+        <div class="boxed flxsb">
+            <div class="flxp" id="lftwrap" >
+
+                <form id="dsearch" class="mhide">
+                    <input name="Search" autocomplete="off" autocorrect="off" id="search-input" placeholder="Search" type="text">
+                </form>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <div id="overlay"></div>
+
+    <ul id="loader">
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    <div id="main">
+
+        <div class="boxed">
+
+            {% block content %}
+            {% endblock %}
+
+            {% block body %}
+            {% endblock body %}
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        let menu = document.getElementById('left-menu'),
+            button = document.getElementById('toggle');
+        // toggle the display of left menu on button click
+        function menutoggle() {
+            if (menu.style.left === '0px') {
+                menu.style.left = '-9999px';
+            } else {
+                menu.style.left = '0px';
+            }
+        }
+        // toggle the display of bottom menu on mobile display
+        function toolbarToggle() {
+            let toolbar = document.getElementById('toolbarsub');
+            if (toolbar.style.bottom === '44px') {
+                toolbar.style.bottom = '-9999px';
+                document.getElementById('overlay').style.opacity = '0';
+            } else {
+                toolbar.style.bottom = '44px';
+                document.getElementById('overlay').style.opacity = '1';
+            }
+        }
+
+        let list = document.querySelectorAll('.menu-item-has-children');
+        function accordion(e) {
+            e.stopPropagation();
+            if (this.classList.contains('active')) {
+                this.classList.remove('active');
+            } else
+            if (this.parentElement.parentElement.classList.contains('active')) {
+                this.classList.add('active');
+            } else
+            {
+                for (i = 0; i < list.length; i++) {
+                    list[i].classList.remove('active');
+                }
+                this.classList.add('active');
+            }
+        }
+        for (i = 0; i < list.length; i++) {
+            list[i].addEventListener('click', accordion);
+        }
+        // function to close the settings modal and reload the page
+        function closeSettingsModal() {
+            document.getElementById('app-setting-modal').style.display = 'none';
+            document.getElementById('overlay').style.opacity = '0';
+            window.location.reload();
+        }
+
+       // event listeners to provide loader animation with overlay for page load
+        window.addEventListener('beforeunload', function () {
+            document.getElementById('loader').style.display = 'block';
+            document.getElementById('overlay').style.opacity = '1';
+        });
+
+        window.addEventListener('load', function () {
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('overlay').style.opacity = '0';
+        });
+        </script>
+
+
+</body>
+</html>

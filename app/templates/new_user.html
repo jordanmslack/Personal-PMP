@@ -1,0 +1,19 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+        <h1>New User</h1>
+        <form method="post" action="">
+
+            {{ form.csrf_token }}
+            {{ form.first_name.label }}{{ form.first_name }}
+            {{ form.last_name.label }}{{ form.last_name }}
+            {{ form.fixed_capacity.label }}{{ form.fixed_capacity }}
+            {{ form.variable_capacity.label }}{{ form.variable_capacity }}
+            {{ form.group.label }}{{ form.group }}
+            {{ form.trello_id.label }}{{ form.trello_id }}
+
+        <input class="submit" type="submit" action="Go" value="Submit"/>
+        </form>
+
+{% endblock %}

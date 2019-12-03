@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+        <h1>New Group</h1>
+        <form method="post" action="">
+
+            {{ form.csrf_token }}
+            {{ form.name.label }}{{ form.name }}
+            {{ form.type.label }}{{ form.type }}
+
+        <input class="submit" type="submit" action="Go" value="Submit"/>
+        </form>
+
+{% endblock %}

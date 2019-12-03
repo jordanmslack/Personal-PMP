@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+    <div class="flxsb">
+        <h1>Project Management</h1>
+
+        {% block create_button %}
+        {% endblock create_button %}
+
+    </div>
+
+    <ul class="secondary-menu padb40">
+        {% for item in nav.top %}
+            <li>
+                <a class="{{ 'currentpg' if item.is_active else '' }}" href="{{ item.url }}">
+                    {{ item.label }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    {% block mainpage %}
+    {% endblock mainpage %}
+
+
+{% endblock %}

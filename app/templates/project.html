@@ -1,0 +1,90 @@
+{% extends 'index.html' %}
+
+{% block body %}
+
+            <div class="flxsb">
+                <h1>{{ data.name }}</h1>
+                <a href="#"><button>Edit</button></a>
+            </div>
+
+            <p class="crumb bb">
+                <a href="{{ url_for('task.home') }}">Home</a>
+                    <span> > </span>
+                {{ data.name }}
+            </p>
+
+
+            <div class="col-1 plaincard">
+
+                {% if data.description %}
+                <p><strong>Description: </strong>{{ data.description }}</p>
+                {% endif %}
+
+                <div id="status" class="flxp" style="padding-top:20px">
+
+                        <div class="col-3"><strong>Status</strong><br>
+                            <p class="medium">{{ data.status }}</p>
+                        </div>
+
+                        <div class="col-3"><strong>Percent Complete</strong><br>
+                            <p class="medium">{{ data.percent_complete() }}%</p>
+                        </div>
+
+                        <div class="col-3"><strong>Estimated Completion Time</strong><br>
+                            <p class="medium">{{ data.contextual_completion() }}</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="flxsb">
+                        <h2 class="mb20">Overall Progress</h2>
+
+                        <a href="{{ url_for('task.new_action', project_id=data.id) }}">
+                            <button class="small">New Task</button>
+                        </a>
+                    </div>
+
+                    <ul id="overall-progress">
+                        <li><span class="bar" style="width:{{ data.percent_complete() }}%">{{ data.percent_complete() }}%</span></li>
+                    </ul>
+
+                    <section></section>
+
+                    <div id="actions">
+                        <ul class="underline mt40 list">
+                                    <li class="flxw aic">
+                                    <div class="quarter"><strong>Name</strong></div>
+                                    <div class="quarter"><strong>Priority</strong></div>
+                                    <div class="quarter"><strong>Time</strong></div>
+                                    <div class="quarter"><strong>Contextual Completion</strong></div>
+                                </li>
+                            {% for row in actions %}
+                                <li class="flxw aic">
+                                    <div class="quarter">
+                                        <a href="{{ url_for('task.action', action_id=row.id) }}">{{ row.name }}</a>
+                                    </div>
+                                    <div class="quarter">{{ row.priority }}</div>
+                                    <div class="quarter">{{ row.time }}</div>
+                                    <div class="quarter">{{ row.contextual_completion() }}</div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <ul class="pagination"></ul>
+                    </div>
+
+                </div>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+<script>
+    // List.js configuration
+    let options = {
+        valueNames: ["name", "priority", "time", "completion"],
+        page: 5,
+        pagination: true
+    };
+    let actionList = new List('actions', options);
+</script>
+
+{% endblock body %}

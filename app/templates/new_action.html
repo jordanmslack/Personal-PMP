@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+        <h1>New Action</h1>
+
+        <p class="crumb bb">
+            <a href="{{ url_for('task.home') }}">< Back</a>
+
+        </p>
+
+        <div class="col-1 plaincard">
+            <form method="post" action="">
+
+                {{ form.csrf_token }}
+                {{ form.project.label }}{{ form.project }}
+                {{ form.assignee.label }}{{ form.assignee }}
+                {{ form.name.label }}{{ form.name }}
+                {{ form.time.label }}{{ form.time }}
+                {{ form.priority.label }}{{ form.priority }}
+                {{ form.description.label }}{{ form.description }}
+                {{ form.start_date.label }}{{ form.start_date }}
+
+            <input class="submit" type="submit" action="Go" value="Submit"/>
+            </form>
+        </div>
+
+{% endblock %}

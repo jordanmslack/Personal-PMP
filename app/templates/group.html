@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+            <div class="flxsb">
+                <h1>{{ group.name }}</h1>
+                <a href="#"><button>Edit</button></a>
+            </div>
+
+            <p class="crumb bb">
+                <a href="{{ url_for('task.home') }}">Home</a>
+                    <span> > </span>
+                {{ group.name }}
+            </p>
+
+            {{ availability }}
+            <div class="plaincard col-1">
+
+                <p>Members</p>
+
+                <ul>
+                {% for user in users %}
+
+                    <li>
+                        <a href="{{ url_for('task.user', user_id=user.id) }}">{{ user.name() }}</a>
+                    </li>
+
+                {% endfor %}
+                </ul>
+
+            </div>
+
+{% endblock %}

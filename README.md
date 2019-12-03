@@ -1,2 +1,2 @@
 # Personal-PMP
-Automated Project Management
+A Project Management app built with Flask and SQLAlchemy and integrated with Trello (via API).
